@@ -5,6 +5,7 @@ const app = express()
 const port = process.env.PORT || 8888
 const path = require('path')
 console.log(process.env.PORT)
+console.log(process.env.HOST_NAME)
 
 // config template engine
 app.set('views', path.join(__dirname, 'views'))
