@@ -1,8 +1,10 @@
 const express = require('express')
 // import express from 'express'
+require('dotenv').config()
 const app = express()
-const port = 8080
+const port = process.env.PORT || 8888
 const path = require('path')
+console.log(process.env.PORT)
 
 // config template engine
 app.set('views', path.join(__dirname, 'views'))
