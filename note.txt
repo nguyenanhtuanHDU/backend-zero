@@ -1,2 +1,5 @@
 devDependencies: gồm các thư viện chỉ hoạt động trong quá trình xây dựng mã nguồn, project, khi xây dụng xong thì các thư viện này ko còn cần thiết
 mvc: model view controller
+
+// seeder: tạo data fake
+// migration: ghi cấu hình của các database
