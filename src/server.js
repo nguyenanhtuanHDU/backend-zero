@@ -13,13 +13,18 @@ app.set('views', path.join(__dirname, 'views'))
 // path.join(__dirname, 'views'): hàm tự động tìm đến thư mục views ứng vs view engine(sample.ejs)
 app.set('view engine', 'ejs')
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+// config static file
+// app.use('/static', express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')))
 
+// khai báo route
 app.get('/test', (req, res) => {
   // res.send('<h1>test title!</h1>')
   res.render('sample.ejs')
+})
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
 })
 
 app.listen(port, () => {
