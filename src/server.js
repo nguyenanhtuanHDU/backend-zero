@@ -10,7 +10,7 @@ const configViewEngine = require('./configs/viewEngine.js')
 configViewEngine(app)
 
 //khai báo route
-app.use('/test', webRoute)
+app.use('/', webRoute)
 app.use('/v2', route2)
 
 app.listen(port, () => {
