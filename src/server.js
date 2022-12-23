@@ -1,31 +1,17 @@
-const express = require('express')
-// import express from 'express'
 require('dotenv').config()
+const express = require('express') // import express from 'express'
 const app = express()
+const webRoute = require('./routes/web')
+const route2 = require('./routes/route2')
 const port = process.env.PORT || 8888
-const path = require('path')
-console.log(process.env.PORT)
-console.log(process.env.HOST_NAME)
+const configViewEngine = require('./configs/viewEngine.js')
 
-// config template engine
-app.set('views', path.join(__dirname, 'views'))
-// ./src do cùng cấp vs server.js
-// path.join(__dirname, 'views'): hàm tự động tìm đến thư mục views ứng vs view engine(sample.ejs)
-app.set('view engine', 'ejs')
+// config template view engine
+configViewEngine(app)
 
-// config static file
-// app.use('/static', express.static(path.join(__dirname, 'public')))
-app.use(express.static(path.join(__dirname, 'public'))) // cấu hình static file tìm trong thư mục puclic
-
-// khai báo route
-app.get('/test', (req, res) => {
-  // res.send('<h1>test title!</h1>')
-  res.render('sample.ejs')
-})
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+//khai báo route
+app.use('/test', webRoute)
+app.use('/v2', route2)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
