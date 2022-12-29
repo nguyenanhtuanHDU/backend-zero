@@ -1,14 +1,8 @@
 const { json } = require('express')
-const connection = require('../configs/database')
+// const connection = require('../configs/database')
 
-let users = []
 const getHomePage = (req, res) => {
-  connection.query('SELECT * FROM `Users`', function (err, results, fields) {
-    users = results
-    console.log(results)
-    res.send(JSON.stringify(users))
-    console.log('getHome =>> users', users)
-  })
+  return res.render('home.ejs')
 }
 
 const getText = (req, res) => {
