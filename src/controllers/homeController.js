@@ -1,4 +1,4 @@
-// const connection = require('../configs/database')
+const connection = require('../configs/database')
 
 const getHomePage = (req, res) => {
   return res.render('home.ejs')
@@ -13,7 +13,14 @@ const getImg = (req, res) => {
 }
 
 const postCreateUser = (req, res) => {
-  console.log('req.body', req.body) // data from form
+  let { myName, city, email } = req.body
+  connection.query(
+    'INSERT into Users(name, email, city) values(?, ?, ?)',
+    [myName, city, email],
+    function (err, results) {
+      console.log(results)
+    }
+  )
   res.send('create a new user')
 }
 // exports nhiều function
