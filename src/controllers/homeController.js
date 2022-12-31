@@ -25,5 +25,4 @@ const postCreateUser = async (req, res) => {
   )
   res.send('create a new user')
 }
-// exports nhiều function
 module.exports = { getHomePage, getText, getImg, postCreateUser, getCreatePage }
