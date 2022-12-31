@@ -11,17 +11,19 @@ const getText = (req, res) => {
 const getImg = (req, res) => {
   res.render('sample.ejs')
 }
-
-const postCreateUser = (req, res) => {
+const getCreatePage = (req, res) => {
+  res.render('create.ejs')
+}
+const postCreateUser = async (req, res) => {
   let { myName, city, email } = req.body
-  connection.query(
+
+  const [results, fields] = await connection.query(
     'INSERT into Users(name, email, city) values(?, ?, ?)',
-    [myName, city, email],
-    function (err, results) {
-      console.log(results)
-    }
+    [myName, city, email]
   )
+  console.log('>>>>> results', results) // rows are data
+
   res.send('create a new user')
 }
 // exports nhiều function
-module.exports = { getHomePage, getText, getImg, postCreateUser }
+module.exports = { getHomePage, getText, getImg, postCreateUser, getCreatePage }
