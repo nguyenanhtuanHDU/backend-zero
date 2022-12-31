@@ -1,7 +1,9 @@
 const connection = require('../configs/database')
+const { getAllUsers } = require('../services/CRUDservices')
 
-const getHomePage = (req, res) => {
-  return res.render('home.ejs')
+const getHomePage = async (req, res) => {
+  const results = await getAllUsers()
+  return res.render('home.ejs', { listUsers: results })
 }
 
 const getText = (req, res) => {
@@ -21,8 +23,6 @@ const postCreateUser = async (req, res) => {
     'INSERT into Users(name, email, city) values(?, ?, ?)',
     [myName, city, email]
   )
-  console.log('>>>>> results', results) // rows are data
-
   res.send('create a new user')
 }
 // exports nhiều function

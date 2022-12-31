@@ -30,12 +30,12 @@ body {
 .input-group {
   padding: 10px;
 }
-button {
+/* button {
   margin: 10px;
   cursor: pointer;
   width: 100%;
   padding: 10px 0;
-}
+} */
 table {
   border-collapse: collapse;
   width: 100%;
@@ -58,4 +58,7 @@ tr:hover {
   font-size: 25px;
   font-weight: 600;
   padding: 0 0 10px;
+}
+button {
+  /* width: 200px; */
 }
