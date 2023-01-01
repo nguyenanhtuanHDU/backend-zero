@@ -16,6 +16,10 @@ const getImg = (req, res) => {
 const getCreatePage = (req, res) => {
   res.render('create.ejs')
 }
+const getUpdatePage = (req, res) => {
+  res.render('edit.ejs')
+}
+
 const postCreateUser = async (req, res) => {
   let { myName, city, email } = req.body
 
@@ -25,4 +29,11 @@ const postCreateUser = async (req, res) => {
   )
   res.send('create a new user')
 }
-module.exports = { getHomePage, getText, getImg, postCreateUser, getCreatePage }
+module.exports = {
+  getHomePage,
+  getText,
+  getImg,
+  postCreateUser,
+  getCreatePage,
+  getUpdatePage,
+}

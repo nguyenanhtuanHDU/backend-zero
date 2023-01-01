@@ -6,6 +6,7 @@ const {
   getImg,
   postCreateUser,
   getCreatePage,
+  getUpdatePage,
 } = require('../controllers/homeController')
 
 // router.METHOD('route', handle)
@@ -16,5 +17,6 @@ router.get('/text', getText)
 router.get('/', getHomePage)
 router.post('/create-user', postCreateUser)
 router.get('/create', getCreatePage)
+router.get('/update', getUpdatePage)
 
 module.exports = router
