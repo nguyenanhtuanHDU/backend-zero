@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="http://localhost:8080/css/style.css">
     <title>Update A User</title>
 </head>
 
 <body>
-    <div class="topnav">
+    <div class=" topnav">
         <a href="/">Home</a>
         <a href="/create">Create Users</a>
     </div>
@@ -21,15 +21,15 @@
                 <legend>Edit user</legend>
                 <div class="input-group">
                     <label for="">Email: </label>
-                    <input type="text" name="email">
+                    <input type="text" name="email" value=" <%= JSON.parse(JSON.stringify(user[0].email)) %> %> ">
                 </div>
                 <div class="input-group">
                     <label for="">Name: </label>
-                    <input type="text" name="myName">
+                    <input type="text" name="myName" value=" <%= JSON.parse(JSON.stringify(user[0].name)) %>">
                 </div>
                 <div class="input-group">
                     <label for="">City: </label>
-                    <input type="text" name="city">
+                    <input type="text" name="city" value="<%= JSON.parse(JSON.stringify(user[0].city)) %>">
                 </div>
                 <div>
                     <button>Save</button>

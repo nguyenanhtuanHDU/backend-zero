@@ -16,8 +16,13 @@ const getImg = (req, res) => {
 const getCreatePage = (req, res) => {
   res.render('create.ejs')
 }
-const getUpdatePage = (req, res) => {
-  res.render('edit.ejs')
+const getUpdatePage = async (req, res) => {
+  const userID = req.params.id
+  const [results, fields] = await connection.query(
+    'SELECT * FROM Users WHERE id = ?',
+    [userID]
+  )
+  res.render('edit.ejs', { user: results })
 }
 
 const postCreateUser = async (req, res) => {
