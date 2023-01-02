@@ -22,7 +22,8 @@ const getUpdatePage = async (req, res) => {
     'SELECT * FROM Users WHERE id = ?',
     [userID]
   )
-  res.render('edit.ejs', { user: results })
+  let user = results && results.length > 0 ? results[0] : {}
+  res.render('edit.ejs', { user: user })
 }
 
 const postCreateUser = async (req, res) => {
