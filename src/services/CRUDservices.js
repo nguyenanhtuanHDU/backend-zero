@@ -5,5 +5,12 @@ const getAllUsers = async () => {
   console.log('>>>>>>> check results: ', results)
   return results
 }
-
-module.exports = { getAllUsers }
+const getUserByID = async (userID) => {
+  const [results, fields] = await connection.query(
+    'SELECT * FROM Users WHERE id = ?',
+    [userID]
+  )
+  let user = results && results.length > 0 ? results[0] : {}
+  return user
+}
+module.exports = { getAllUsers, getUserByID }
