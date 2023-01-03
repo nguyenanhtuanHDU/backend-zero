@@ -3,6 +3,7 @@ const {
   getAllUsers,
   getUserByID,
   updateUserByID,
+  deleteUserByID,
 } = require('../services/CRUDservices')
 
 const getHomePage = async (req, res) => {
@@ -48,10 +49,7 @@ const getDeletePage = async (req, res) => {
 }
 const postDeleteUser = async (req, res) => {
   const id = req.body.id
-  const [results, fields] = await connection.execute(
-    'DELETE FROM Users WHERE id = ?',
-    [id]
-  )
+  await deleteUserByID(id)
   res.redirect('/')
 }
 
