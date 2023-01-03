@@ -15,10 +15,15 @@
         <a href="/create">Create Users</a>
     </div>
     <div class="form-add-new">
-        <form action="/create-user" method="POST">
+        <form action="/update-user" method="POST">
             <!-- method POST: create data -->
             <fieldset>
                 <legend>Edit user</legend>
+
+                <div class="input-group d-none">
+                    <label for="">ID: </label>
+                    <input type="text" name="id" value=" <%= (user.id) %> %> ">
+                </div>
                 <div class="input-group">
                     <label for="">Email: </label>
                     <input type="text" name="email" value=" <%= (user.email) %> %> ">

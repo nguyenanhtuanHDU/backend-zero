@@ -1,5 +1,9 @@
 const connection = require('../configs/database')
-const { getAllUsers, getUserByID } = require('../services/CRUDservices')
+const {
+  getAllUsers,
+  getUserByID,
+  updateUserByID,
+} = require('../services/CRUDservices')
 
 const getHomePage = async (req, res) => {
   const results = await getAllUsers()
@@ -31,6 +35,13 @@ const postCreateUser = async (req, res) => {
   )
   res.send('create a new user')
 }
+const postUpdateUser = async (req, res) => {
+  const { myName, email, city, id } = req.body
+  await updateUserByID(myName, email, city, id)
+  res.redirect('/') // = router.get('/', getHomePage)
+  // let listUsers = await getAllUsers()
+  // res.render('home.ejs', { listUsers: listUsers })
+}
 module.exports = {
   getHomePage,
   getText,
@@ -38,4 +49,5 @@ module.exports = {
   postCreateUser,
   getCreatePage,
   getUpdatePage,
+  postUpdateUser,
 }

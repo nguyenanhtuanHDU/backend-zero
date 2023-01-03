@@ -62,3 +62,6 @@ tr:hover {
 button {
   /* width: 200px; */
 }
+.d-none {
+  display: none;
+}
