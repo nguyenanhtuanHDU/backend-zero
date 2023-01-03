@@ -19,8 +19,11 @@
             <!-- method POST: create data -->
             <fieldset>
                 <legend>Delete user</legend>
-
-                <div class="input-">
+                <div class="input d-none">
+                    <label for="">Are you sure to delete user with email: </label>
+                    <input type="text" name="id" value=" <%= (user.id) %> %> ">
+                </div>
+                <div class="input">
                     <label for="">Are you sure to delete user with email: </label>
                     <input type="text" name="email" value=" <%= (user.email) %> %> ">
                 </div>
