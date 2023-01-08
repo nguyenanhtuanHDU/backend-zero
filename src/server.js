@@ -1,10 +1,14 @@
 require('dotenv').config()
+const mongoose = require('mongoose')
 const express = require('express') // import express from 'express'
 const app = express()
 const webRoute = require('./routes/web')
 const route2 = require('./routes/route2')
 const port = process.env.PORT || 8888
 const configViewEngine = require('./configs/viewEngine.js')
+const connection = require('./configs/database')
+
+connection()
 
 // config template view engine
 configViewEngine(app)
