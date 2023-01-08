@@ -22,30 +22,40 @@
 
 const mongoose = require('mongoose')
 
-const res = [
+const dbState = [
   {
-    status: 1,
-    title: 'status 1',
+    value: 0,
+    label: 'disconnected',
   },
   {
-    status: 2,
-    title: 'status 2',
+    value: 1,
+    label: 'connected',
   },
   {
-    status: 3,
-    title: 'status 3',
+    value: 2,
+    label: 'connecting',
   },
   {
-    status: 4,
-    title: 'status 4',
+    value: 3,
+    label: 'disconnecting',
   },
 ]
 
 const connection = async () => {
   try {
-    console.log('>>> check')
-    await mongoose.connect('mongodb://root:123456@localhost:27017')
-    console.log('>>> check connect', mongoose.connection.readyState) // check status connection
+    const options = {
+      user: process.env.DB_USER,
+      pass: process.env.DB_PASSWORD,
+      // dbName: 'nodejs-mongdb',
+    }
+    // await mongoose.connect('mongodb://root:123456@localhost:27017')
+    await mongoose.connect(process.env.DB_HOST, options)
+    const state = Number(mongoose.connection.readyState)
+    console.log(
+      '>>> check connnect',
+      dbState.find((f) => f.value == state).label,
+      'to db'
+    )
   } catch (err) {
     console.log('>>> errr', err)
   }
