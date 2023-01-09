@@ -46,6 +46,7 @@ const connection = async () => {
     const options = {
       user: process.env.DB_USER,
       pass: process.env.DB_PASSWORD,
+      dbName: process.env.DB_DATABASE,
       // dbName: 'nodejs-mongdb',
     }
     // await mongoose.connect('mongodb://root:123456@localhost:27017')
