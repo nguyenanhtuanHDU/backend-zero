@@ -1,4 +1,5 @@
 const connection = require('../configs/database')
+const { User } = require('../models/User')
 const {
   getAllUsers,
   getUserByID,
@@ -7,7 +8,7 @@ const {
 } = require('../services/CRUDservices')
 
 const getHomePage = async (req, res) => {
-  const results = await getAllUsers()
+  const results = []
   return res.render('home.ejs', { listUsers: results })
 }
 
@@ -21,21 +22,20 @@ const getImg = (req, res) => {
 const getCreatePage = (req, res) => {
   res.render('create.ejs')
 }
+const postCreateUser = async (req, res) => {
+  let { name, city, email } = req.body
+
+  // await User.create({ name: name, email: email, city: city })
+  await User.create({ name, email, city })
+
+  res.redirect('/')
+}
 const getUpdatePage = async (req, res) => {
   const userID = req.params.id
   const user = await getUserByID(userID)
   res.render('edit.ejs', { user: user })
 }
 
-const postCreateUser = async (req, res) => {
-  let { myName, city, email } = req.body
-
-  const [results, fields] = await connection.query(
-    'INSERT into Users(name, email, city) values(?, ?, ?)',
-    [myName, city, email]
-  )
-  res.redirect('/')
-}
 const postUpdateUser = async (req, res) => {
   const { myName, email, city, id } = req.body
   await updateUserByID(myName, email, city, id)
