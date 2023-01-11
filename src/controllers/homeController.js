@@ -8,7 +8,7 @@ const {
 } = require('../services/CRUDservices')
 
 const getHomePage = async (req, res) => {
-  const results = []
+  const results = await User.find()
   return res.render('home.ejs', { listUsers: results })
 }
 
