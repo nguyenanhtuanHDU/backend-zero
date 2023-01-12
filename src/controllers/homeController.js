@@ -37,11 +37,9 @@ const getUpdatePage = async (req, res) => {
 }
 
 const postUpdateUser = async (req, res) => {
-  const { myName, email, city, id } = req.body
-  await updateUserByID(myName, email, city, id)
+  const { name, email, city, id } = req.body
+  await updateUserByID(name, email, city, id)
   res.redirect('/') // = router.get('/', getHomePage)
-  // let listUsers = await getAllUsers()
-  // res.render('home.ejs', { listUsers: listUsers })
 }
 const getDeletePage = async (req, res) => {
   const user = await getUserByID(req.params.id)
