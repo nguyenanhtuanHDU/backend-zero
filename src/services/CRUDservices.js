@@ -16,6 +16,6 @@ const updateUserByID = async (name, email, city, id) => {
   )
 }
 const deleteUserByID = async (id) => {
-  await User.deleteOne({ _id: id })
+  await User.deleteOne({ _id: id.trim() })
 }
 module.exports = { getAllUsers, getUserByID, updateUserByID, deleteUserByID }

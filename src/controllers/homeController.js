@@ -1,7 +1,6 @@
 const connection = require('../configs/database')
 const { User } = require('../models/User')
 const {
-  getAllUsers,
   getUserByID,
   updateUserByID,
   deleteUserByID,
@@ -12,13 +11,6 @@ const getHomePage = async (req, res) => {
   return res.render('home.ejs', { listUsers: results })
 }
 
-const getText = (req, res) => {
-  res.send('Hello from text')
-}
-
-const getImg = (req, res) => {
-  res.render('sample.ejs')
-}
 const getCreatePage = (req, res) => {
   res.render('create.ejs')
 }
@@ -53,8 +45,6 @@ const postDeleteUser = async (req, res) => {
 
 module.exports = {
   getHomePage,
-  getText,
-  getImg,
   postCreateUser,
   getCreatePage,
   getUpdatePage,

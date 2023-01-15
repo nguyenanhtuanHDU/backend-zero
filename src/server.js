@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express') // import express from 'express'
 const app = express()
 const webRoute = require('./routes/web')
-const route2 = require('./routes/route2')
+const apiRoute = require('./routes/api')
 
 const port = process.env.PORT || 8888
 const configViewEngine = require('./configs/viewEngine.js')
@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true })) // for form data
 
 //khai báo route
 app.use('/', webRoute)
-app.use('/v2', route2)
+app.use('/v1/api', apiRoute)
 ;(async () => {
   await connection()
   app.listen(port, () => {
