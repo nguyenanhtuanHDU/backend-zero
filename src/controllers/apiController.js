@@ -13,4 +13,13 @@ const getUsersAPI = async (req, res) => {
   })
 }
 
-module.exports = { getAPIPage, getUsersAPI }
+const postAUserAPI = async (req, res) => {
+  let { name, city, email } = req.body
+  const user = await User.create({ name, email, city })
+  res.status(200).json({
+    errorCode: 0,
+    data: user,
+  })
+}
+
+module.exports = { getAPIPage, getUsersAPI, postAUserAPI }
