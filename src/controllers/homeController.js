@@ -33,10 +33,12 @@ const postUpdateUser = async (req, res) => {
   await updateUserByID(name, email, city, id)
   res.redirect('/') // = router.get('/', getHomePage)
 }
+
 const getDeletePage = async (req, res) => {
   const user = await getUserByID(req.params.id)
   res.render('delete.ejs', { user: user })
 }
+
 const postDeleteUser = async (req, res) => {
   const id = req.body.id
   await deleteUserByID(id)
