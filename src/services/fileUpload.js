@@ -1,11 +1,15 @@
+const { time } = require("console");
 const path = require("path");
 
 const uploadSingleFile = async (file) => {
   try {
     const timeStamp = new Date().getTime();
+
+    let extName = path.extname(file.name); // lấy ra đuôi file
+    let baseName = path.basename(file.name, extName); // lấy ra tên file
+
     let uploadPath =
-      path.join("./src", "/public/images/upload/") +
-      `${timeStamp}-${file.name}`;
+      path.join("./src", "/public/images/upload/") + `${baseName}-${timeStamp}${extName}`
     await file.mv(uploadPath);
     return {
       status: "success",
