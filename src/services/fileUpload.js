@@ -21,9 +21,9 @@ const uploadSingleFile = async (file) => {
   }
 };
 
-const uploadMultipleFile = (files) => {
+const uploadMultipleFile = async (files) => {
   try {
-    files.map((file) => {
+    await files.map((file) => {
       const timeStamp = new Date().getTime();
 
       let uploadPath =
@@ -37,10 +37,10 @@ const uploadMultipleFile = (files) => {
       error: null,
     };
   } catch (error) {
-    return{
+    return {
       status: "error",
       path: null,
-      error: err,
+      error: JSON.stringify(error),
     };
   }
 };

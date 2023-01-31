@@ -44,12 +44,12 @@ const deleteAUserAPI = async (req, res) => {
 const postUploadSingleFile = async (req, res) => {
   const image = req.files.image;
   let results = await uploadSingleFile(image)
-  res.send(results);
+  res.send(results)
 };
 
 const postUploadMultipleFile = async (req, res) => {
-  const image = req.files.image;
-  let results = await uploadMultipleFile(image)
+  const images = req.files.images;
+  let results = await uploadMultipleFile(images)
   res.send(results);
 };
 
