@@ -1,6 +1,9 @@
 const { User } = require("../models/User");
 const { updateUserByID } = require("../services/CRUDservices");
-const { uploadSingleFile, uploadMultipleFile } = require("../services/fileUpload");
+const {
+  uploadSingleFile,
+  uploadMultipleFiles,
+} = require("../services/fileUpload");
 
 const getAPIPage = async (req, res) => {
   res.send("Hello from API");
@@ -43,13 +46,13 @@ const deleteAUserAPI = async (req, res) => {
 
 const postUploadSingleFile = async (req, res) => {
   const image = req.files.image;
-  let results = await uploadSingleFile(image)
-  res.send(results)
+  let results = await uploadSingleFile(image);
+  res.send(results);
 };
 
 const postUploadMultipleFile = async (req, res) => {
   const images = req.files.images;
-  let results = await uploadMultipleFile(images)
+  let results = await uploadMultipleFiles(images);
   res.send(results);
 };
 
@@ -60,5 +63,5 @@ module.exports = {
   putAUserAPI,
   deleteAUserAPI,
   postUploadSingleFile,
-  postUploadMultipleFile
+  postUploadMultipleFile,
 };

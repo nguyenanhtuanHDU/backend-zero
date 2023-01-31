@@ -5,15 +5,15 @@ const uploadSingleFile = async (file) => {
   try {
     const timeStamp = new Date().getTime();
 
-    let extName = path.extname(file.name); // lấy ra đuôi file
-    let baseName = path.basename(file.name, extName); // lấy ra tên file
+    const extName = path.extname(file.name); // lấy ra đuôi file
+    const baseName = path.basename(file.name, extName); // lấy ra tên file
+    const finalName = `${baseName}-${timeStamp}${extName}`;
 
-    let uploadPath =
-      path.join("./src", "/public/images/upload/") + `${baseName}-${timeStamp}${extName}`
+    const uploadPath = path.join("./src", "/public/images/upload/") + finalName;
     await file.mv(uploadPath);
     return {
       status: "success",
-      path: file.name,
+      path: finalName,
       error: null,
     };
   } catch (error) {
@@ -25,21 +25,34 @@ const uploadSingleFile = async (file) => {
   }
 };
 
-const uploadMultipleFile = async (files) => {
+const uploadMultipleFiles = async (files) => {
+  let filesInfoArr = []
+  let countSuccess = 0
   try {
     await files.map((file) => {
       const timeStamp = new Date().getTime();
+      const extName = path.extname(file.name);
+      const baseName = path.basename(file.name, extName);
+      const finalName = `${baseName}-${timeStamp}${extName}`;
 
-      let uploadPath =
-        path.join("./src", "/public/images/upload/") +
-        `${timeStamp}-${file.name}`;
+      let uploadPath = path.join("./src", "/public/images/upload/") + finalName;
       file.mv(uploadPath);
+      
+      countSuccess ++;
+      filesInfoArr.push({
+        status: 'success',
+        fileName: file.name,
+        filePath: finalName,
+        error: null
+      })
     });
     return {
-      status: "success",
-      path: null,
-      error: null,
-    };
+      EC: 0,
+      data: {
+        countSuccess,
+        detail: filesInfoArr
+      }
+    }
   } catch (error) {
     return {
       status: "error",
@@ -49,4 +62,4 @@ const uploadMultipleFile = async (files) => {
   }
 };
 
-module.exports = { uploadSingleFile, uploadMultipleFile };
+module.exports = { uploadSingleFile, uploadMultipleFiles };
