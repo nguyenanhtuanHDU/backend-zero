@@ -1,5 +1,8 @@
 const Customer = require("../models/Customer");
-const { createCustomerService } = require("../services/customerService");
+const {
+  createCustomerService,
+  createCustomersListService,
+} = require("../services/customerService");
 const { uploadSingleFile } = require("../services/fileUpload");
 
 module.exports = {
@@ -38,5 +41,26 @@ module.exports = {
       EC: 0,
       data: customer,
     });
+  },
+
+  postCreateCustomersList: async (req, res) => {
+    const customersData = req.body.customers;
+
+    // await customers.map((customer) => {
+    //   createCustomerService(customer);
+    // });
+
+    const customers = await createCustomersListService(customersData);
+    if (customers) {
+      res.status(200).json({
+        EC: 0,
+        data: customers,
+      });
+    } else {
+      res.status(200).json({
+        EC: 1,
+        data: null,
+      });
+    }
   },
 };

@@ -16,4 +16,14 @@ module.exports = {
       return null;
     }
   },
+
+  createCustomersListService: async (customersData) => {
+    try {
+      const customers = await Customer.create(customersData);
+      return customers;
+    } catch (error) {
+        console.log('>>> err: ', error);
+        return null
+    }
+  },
 };

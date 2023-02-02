@@ -1,8 +1,8 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const customerSchema = new mongoose.Schema(
   {
-    name: { type: String, require },
+    name: { type: String, required: true },
     address: String,
     phone: String,
     email: String,
@@ -10,7 +10,7 @@ const customerSchema = new mongoose.Schema(
     description: String,
   },
   { timestamps: false } // createAt, updatedAt
-)
-const Customer = mongoose.model('customer', customerSchema)
+);
+const Customer = mongoose.model("customer", customerSchema);
 
-module.exports = Customer
+module.exports = Customer;
