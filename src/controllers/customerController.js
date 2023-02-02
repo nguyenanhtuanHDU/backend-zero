@@ -1,13 +1,14 @@
-const Customer = require("../models/Customer");
 const {
   createCustomerService,
   createCustomersListService,
+  getAllCustomersService,
+  updateCustomerById,
 } = require("../services/customerService");
 const { uploadSingleFile } = require("../services/fileUpload");
 
 module.exports = {
   getAllCustomers: async (req, res) => {
-    const customers = await Customer.find();
+    const customers = await getAllCustomersService();
     res.status(200).json({
       EC: 0,
       data: customers,
@@ -62,5 +63,14 @@ module.exports = {
         data: null,
       });
     }
+  },
+
+  putUpdateCustomer: async (req, res) => {
+    const { id, name, address, phone } = req.body;
+    const customer = await updateCustomerById(id, name, address, phone);
+    res.status(200).json({
+      EC: 0,
+      data: customer,
+    });
   },
 };

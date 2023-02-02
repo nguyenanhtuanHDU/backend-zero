@@ -1,6 +1,15 @@
 const Customer = require("../models/Customer");
 
 module.exports = {
+  getAllCustomersService: async () => {
+    try {
+      const data = Customer.find();
+      return data;
+    } catch (error) {
+      console.log(">>> err: ", error);
+      return null;
+    }
+  },
   createCustomerService: async (customerData) => {
     try {
       const customer = await Customer.create({
@@ -22,8 +31,20 @@ module.exports = {
       const customers = await Customer.create(customersData);
       return customers;
     } catch (error) {
-        console.log('>>> err: ', error);
-        return null
+      console.log(">>> err: ", error);
+      return null;
+    }
+  },
+  updateCustomerById: async (id, name, address, phone) => {
+    try {
+      const customer = await Customer.updateOne(
+        { _id: id },
+        { name, address, phone }
+      );
+      return customer;
+    } catch (error) {
+      console.log(error);
+      return null;
     }
   },
 };
