@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
+
 const {
-  getAPIPage,
   getUsersAPI,
   postAUserAPI,
   putAUserAPI,
@@ -10,12 +10,17 @@ const {
   postUploadMultipleFile,
 } = require("../controllers/apiController");
 
-router.get("/", getAPIPage);
-router.put("/users", putAUserAPI);
-router.get("/users", getUsersAPI);
-router.post("/users", postAUserAPI);
-router.delete("/users", deleteAUserAPI);
+const { getAllCustomers, postCreateCustomer } = require("../controllers/customerController");
+
+router.get("/user", getUsersAPI);
+router.put("/user", putAUserAPI);
+router.post("/user", postAUserAPI);
+router.delete("/user", deleteAUserAPI);
 
 router.post("/file", postUploadSingleFile);
 router.post("/files", postUploadMultipleFile);
+
+router.get("/customer", getAllCustomers);
+router.post("/customer", postCreateCustomer);
+
 module.exports = router;

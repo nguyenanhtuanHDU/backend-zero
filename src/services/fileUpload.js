@@ -1,4 +1,3 @@
-const { time } = require("console");
 const path = require("path");
 
 const uploadSingleFile = async (file) => {
@@ -26,8 +25,8 @@ const uploadSingleFile = async (file) => {
 };
 
 const uploadMultipleFiles = async (files) => {
-  let filesInfoArr = []
-  let countSuccess = 0
+  let filesInfoArr = [];
+  let countSuccess = 0;
   try {
     await files.map((file) => {
       const timeStamp = new Date().getTime();
@@ -37,22 +36,22 @@ const uploadMultipleFiles = async (files) => {
 
       let uploadPath = path.join("./src", "/public/images/upload/") + finalName;
       file.mv(uploadPath);
-      
-      countSuccess ++;
+
+      countSuccess++;
       filesInfoArr.push({
-        status: 'success',
+        status: "success",
         fileName: file.name,
         filePath: finalName,
-        error: null
-      })
+        error: null,
+      });
     });
     return {
       EC: 0,
       data: {
         countSuccess,
-        detail: filesInfoArr
-      }
-    }
+        detail: filesInfoArr,
+      },
+    };
   } catch (error) {
     return {
       status: "error",

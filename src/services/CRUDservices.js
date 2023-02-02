@@ -10,7 +10,8 @@ const getUserByID = async (userID) => {
   return user
 }
 const updateUserByID = async (name, email, city, id) => {
-  await User.updateOne({ _id: id }, { name: name, email: email, city: city })
+  const userEdit =  await User.updateOne({ _id: id }, { name: name, email: email, city: city })
+  return userEdit
 }
 const deleteUserByID = async (id) => {
   await User.deleteOne({ _id: id.trim() })

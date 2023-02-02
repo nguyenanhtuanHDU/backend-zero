@@ -1,4 +1,6 @@
-const customerSchema = new Schema(
+const mongoose = require('mongoose')
+
+const customerSchema = new mongoose.Schema(
   {
     name: { type: String, require },
     address: String,
@@ -7,7 +9,7 @@ const customerSchema = new Schema(
     image: String,
     description: String,
   },
-  { timestamps: true }
+  { timestamps: false } // createAt, updatedAt
 )
 const Customer = mongoose.model('customer', customerSchema)
 
