@@ -15,6 +15,7 @@ const {
   postCreateCustomer,
   postCreateCustomersList,
   putUpdateCustomer,
+  deleteCustomer,
 } = require("../controllers/customerController");
 
 router.get("/user", getUsersAPI);
@@ -29,5 +30,6 @@ router.get("/customer", getAllCustomers);
 router.post("/customer", postCreateCustomer);
 router.post("/customers-list", postCreateCustomersList);
 router.put("/customer", putUpdateCustomer);
+router.delete("/customer", deleteCustomer);
 
 module.exports = router;

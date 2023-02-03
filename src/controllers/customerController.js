@@ -2,7 +2,8 @@ const {
   createCustomerService,
   createCustomersListService,
   getAllCustomersService,
-  updateCustomerById,
+  updateCustomerService,
+  deleteCustomerService,
 } = require("../services/customerService");
 const { uploadSingleFile } = require("../services/fileUpload");
 
@@ -67,7 +68,16 @@ module.exports = {
 
   putUpdateCustomer: async (req, res) => {
     const { id, name, address, phone } = req.body;
-    const customer = await updateCustomerById(id, name, address, phone);
+    const customer = await updateCustomerService(id, name, address, phone);
+    res.status(200).json({
+      EC: 0,
+      data: customer,
+    });
+  },
+
+  deleteCustomer: async (req, res) => {
+    const id = req.body.id;
+    const customer = await deleteCustomerService(id);
     res.status(200).json({
       EC: 0,
       data: customer,
