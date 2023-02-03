@@ -7,6 +7,7 @@ module.exports = {
       return data;
     } catch (error) {
       console.log(">>> err: ", error);
+      console.log(error);
       return null;
     }
   },
@@ -22,6 +23,7 @@ module.exports = {
       });
       return customer;
     } catch (error) {
+      console.log(error);
       return null;
     }
   },
@@ -30,7 +32,7 @@ module.exports = {
       const customers = await Customer.create(customersData);
       return customers;
     } catch (error) {
-      console.log(">>> err: ", error);
+      console.log(error);
       return null;
     }
   },
@@ -49,6 +51,15 @@ module.exports = {
   deleteCustomerService: async (id) => {
     try {
       const customer = await Customer.deleteById({ _id: id }); // mongoose-delete method
+      return customer;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  },
+  deleteCustomerListService: async (idArr) => {
+    try {
+      const customer = Customer.deleteMany({ _id: { $in: idArr } }) // $in : arr
       return customer;
     } catch (error) {
       console.log(error);

@@ -1,9 +1,11 @@
+const Customer = require("../models/Customer");
 const {
   createCustomerService,
   createCustomersListService,
   getAllCustomersService,
   updateCustomerService,
   deleteCustomerService,
+  deleteCustomerListService,
 } = require("../services/customerService");
 const { uploadSingleFile } = require("../services/fileUpload");
 
@@ -44,7 +46,6 @@ module.exports = {
       data: customer,
     });
   },
-
   postCreateCustomersList: async (req, res) => {
     const customersData = req.body.customers;
 
@@ -65,7 +66,6 @@ module.exports = {
       });
     }
   },
-
   putUpdateCustomer: async (req, res) => {
     const { id, name, address, phone } = req.body;
     const customer = await updateCustomerService(id, name, address, phone);
@@ -74,13 +74,22 @@ module.exports = {
       data: customer,
     });
   },
-
   deleteCustomer: async (req, res) => {
     const id = req.body.id;
     const customer = await deleteCustomerService(id);
     res.status(200).json({
       EC: 0,
       data: customer,
+    });
+  },
+  deleteCustomerList: async (req, res) => {
+    const results = req.body.customers;
+
+    const customersDeleted = await deleteCustomerListService(results);
+
+    res.status(200).json({
+      EC: 0,
+      data: customersDeleted,
     });
   },
 };
