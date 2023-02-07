@@ -1,10 +1,15 @@
 const Customer = require("../models/Customer");
 
 module.exports = {
-  getAllCustomersService: async (page, limit) => {
+  getAllCustomersService: async (page, limit, name) => {
     try {
       const skip = (page - 1) * limit;
-      const data = Customer.find().skip(skip).limit(limit).exec();
+      const data = await Customer.find({
+        name: { $regex: ".*" + name + ".*" },
+      })
+        .skip(skip)
+        .limit(limit)
+        .exec();
       return data;
     } catch (error) {
       console.log(error);

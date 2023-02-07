@@ -12,10 +12,13 @@ const { uploadSingleFile } = require("../services/fileUpload");
 module.exports = {
   getAllCustomers: async (req, res) => {
     let customers;
-    const { page, limit } = req.query;
+    const { page, limit , name} = req.query;
 
     if (page && limit) {
       customers = await getAllCustomersService(page, limit);
+      if(name){
+        customers = await getAllCustomersService(page, limit, name);
+      }
     } else {
       customers = await getAllCustomersService();
     }
