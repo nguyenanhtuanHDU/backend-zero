@@ -11,7 +11,15 @@ const { uploadSingleFile } = require("../services/fileUpload");
 
 module.exports = {
   getAllCustomers: async (req, res) => {
-    const customers = await getAllCustomersService();
+    let customers;
+    const { page, limit } = req.query;
+
+    if (page && limit) {
+      customers = await getAllCustomersService(page, limit);
+    } else {
+      customers = await getAllCustomersService();
+    }
+
     res.status(200).json({
       EC: 0,
       data: customers,

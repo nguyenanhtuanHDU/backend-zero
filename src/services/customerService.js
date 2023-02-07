@@ -1,12 +1,12 @@
 const Customer = require("../models/Customer");
 
 module.exports = {
-  getAllCustomersService: async () => {
+  getAllCustomersService: async (page, limit) => {
     try {
-      const data = Customer.find();
+      const skip = (page - 1) * limit;
+      const data = Customer.find().skip(skip).limit(limit).exec();
       return data;
     } catch (error) {
-      console.log(">>> err: ", error);
       console.log(error);
       return null;
     }
@@ -59,7 +59,7 @@ module.exports = {
   },
   deleteCustomerListService: async (idArr) => {
     try {
-      const customer = Customer.deleteMany({ _id: { $in: idArr } }) // $in : arr
+      const customer = Customer.deleteMany({ _id: { $in: idArr } }); // $in : arr
       return customer;
     } catch (error) {
       console.log(error);
