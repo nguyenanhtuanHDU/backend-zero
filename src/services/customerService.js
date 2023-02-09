@@ -1,12 +1,10 @@
 const Customer = require("../models/Customer");
 
 module.exports = {
-  getAllCustomersService: async (page, limit, name) => {
+  getAllCustomersService: async (page, limit, queryObj) => {
     try {
       const skip = (page - 1) * limit;
-      const data = await Customer.find({
-        name: { $regex: ".*" + name + ".*" },
-      })
+      const data = await Customer.find(queryObj)
         .skip(skip)
         .limit(limit)
         .exec();

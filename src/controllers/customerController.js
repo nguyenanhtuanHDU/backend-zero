@@ -1,4 +1,6 @@
 const Customer = require("../models/Customer");
+const aqp = require("api-query-params");
+
 const {
   createCustomerService,
   createCustomersListService,
@@ -12,13 +14,14 @@ const { uploadSingleFile } = require("../services/fileUpload");
 module.exports = {
   getAllCustomers: async (req, res) => {
     let customers;
-    const { page, limit , name} = req.query;
+    const { page, limit } = req.query;
+
+    const { filter } = aqp(req.query);
+    delete filter.page;
+    console.log(">>> check query: ", filter);
 
     if (page && limit) {
-      customers = await getAllCustomersService(page, limit);
-      if(name){
-        customers = await getAllCustomersService(page, limit, name);
-      }
+      customers = await getAllCustomersService(page, limit, filter);
     } else {
       customers = await getAllCustomersService();
     }
@@ -31,8 +34,6 @@ module.exports = {
   postCreateCustomer: async (req, res) => {
     let imageUrl = "";
     const { name, address, phone, email, description } = req.body;
-
-    console.log(">>> check image: ", req.files);
 
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).send("No files were uploaded.");
