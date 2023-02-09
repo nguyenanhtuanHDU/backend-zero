@@ -1,4 +1,4 @@
-const Customer = require("../models/Customer");
+
 const aqp = require("api-query-params");
 
 const {
