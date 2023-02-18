@@ -25,22 +25,19 @@ app.use('/v1/api', apiRoute);
 
 (async () => {
   try {
-    const url = process.env.DB_WITH_DRIVER;
-    const client = new MongoClient(url);
+    // const url = process.env.DB_WITH_DRIVER;
+    // const client = new MongoClient(url);
 
-    const dbName = 'tuanna';
+    // const dbName = 'tuanna';
 
-    await client.connect();
-    console.log('Connected successfully to server');
-    const db = client.db(dbName);
-    const Customer = db.collection('Customers');
-    // await Customer.insertOne({ name: 'tuan 2' });
-    // await Customer.insertOne({ name: 'tuan 2', test: [1, 2, 3] });
-    const customer = await Customer.findOne({
-      name: 'test 10',
-    });
-    console.log('>>> customers: ', customer);
-
+    // await client.connect();
+    // console.log('Connected successfully to server');
+    // const db = client.db(dbName);
+    // const Customer = db.collection('Customers');
+    // const customer = await Customer.findOne({
+    //   name: 'test 10',
+    // });
+    await connection();
     app.listen(port, () => {
       console.log(`Example app listening on port ${port}`);
     });
