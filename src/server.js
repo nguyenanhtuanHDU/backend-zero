@@ -37,7 +37,7 @@ app.use('/v1/api', apiRoute);
     // await Customer.insertOne({ name: 'tuan 2' });
     // await Customer.insertOne({ name: 'tuan 2', test: [1, 2, 3] });
     const customer = await Customer.findOne({
-      name: 'tuan',
+      name: 'test 10',
     });
     console.log('>>> customers: ', customer);
 
