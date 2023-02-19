@@ -18,7 +18,7 @@ const {
   deleteCustomer,
   deleteCustomerList,
 } = require('../controllers/customerController');
-const { postCreateProject } = require('../controllers/projectController');
+const { postCreateProject, getAllProject } = require('../controllers/projectController');
 
 router.get('/user', getUsersAPI);
 router.put('/user', putAUserAPI);
@@ -49,6 +49,7 @@ router.get('/info/:name/:address', (req, res) => {
   });
 });
 
+router.get('/project', getAllProject);
 router.post('/project', postCreateProject);
 
 module.exports = router;

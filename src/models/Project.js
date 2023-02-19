@@ -25,7 +25,7 @@ const projectSchema = new mongoose.Schema(
     endDate: String,
     discription: String,
     customerInfo: customerSchema,
-    userInfo: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    userInfo: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
     leader: userSechema,
     task: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Task' }],
   },
