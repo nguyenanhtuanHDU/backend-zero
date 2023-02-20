@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoose_delete = require('mongoose-delete');
 
 const customerSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -33,6 +34,8 @@ const projectSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+projectSchema.plugin(mongoose_delete);
 
 const Project = mongoose.model('project', projectSchema);
 

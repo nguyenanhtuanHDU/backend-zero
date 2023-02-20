@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoose_delete = require('mongoose-delete');
 
 const projectSchema = new mongoose.Schema({
   name: String,
@@ -31,4 +32,7 @@ const taskSchema = new mongoose.Schema(
   }
 );
 
-const Task = mongoose.model('project', taskSchema);
+taskSchema.plugin(mongoose_delete);
+
+const Task = mongoose.model('task', taskSchema);
+module.exports = Task
