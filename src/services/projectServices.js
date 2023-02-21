@@ -1,4 +1,5 @@
 const Project = require('../models/Project');
+const Task = require("../models/Task");
 const User = require("../models/User")
 
 module.exports = {
@@ -41,6 +42,19 @@ module.exports = {
       })
       const newProject = await project.save()
       return newProject
+    }
+    if (data.type === 'ADD_TASK') {
+      const project = await Project.findById(data.projectId)
+      console.log('>>> project: ', project);
+      const task = await Task.findById(data.taskId)
+      if (project && task) {
+        data.taskId.map(async item => {
+          await project.task.push(item)
+        })
+        await project.save()
+        return project
+      }
+
     }
   },
   updateProjectService: async (data) => {

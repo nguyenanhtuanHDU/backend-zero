@@ -28,7 +28,7 @@ const projectSchema = new mongoose.Schema(
     customerInfo: customerSchema,
     userInfo: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
     leader: userSechema,
-    task: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Task' }],
+    task: [{ type: mongoose.Schema.Types.ObjectId, ref: 'task' }],
   },
   {
     timestamps: true,

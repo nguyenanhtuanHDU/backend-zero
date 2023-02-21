@@ -1,13 +1,18 @@
+const { createATaskService, updateATaskService, deleteTaskService, getAllTaskService } = require("../services/taskService")
+const aqp = require('api-query-params');
 const Task = require("../models/Task");
-const { createATaskService, updateATaskService, deleteTaskService } = require("../services/taskService")
 
 module.exports = {
     getAllTasks: async (req, res) => {
         try {
-            const task = await Task.find({})
+            const { page } = req.query
+            const queryString = aqp(req.query);
+            const { limit } = queryString
+            const skip = (page - 1) * limit
+            const tasks = await Task.find({}).skip(skip).limit(limit).exec()
             res.status(200).json({
                 EC: 0,
-                data: task
+                data: tasks
             })
         } catch (error) {
             console.log(error);

@@ -6,11 +6,12 @@ module.exports = {
         return task
     },
     updateATaskService: (data) => {
-        const task = Task.updateOne({ _id: data.id }, { name: data.name })
+        const { id, ...otherData } = data
+        const task = Task.updateOne({ _id: data.id }, otherData)
         return task
     },
     deleteTaskService: async (id) => {
-        const task = await Task.delete({_id: id.trim()})
+        const task = await Task.delete({ _id: id.trim() })
         return task
     }
 }
